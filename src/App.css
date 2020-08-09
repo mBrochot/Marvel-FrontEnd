@@ -1,38 +1,380 @@
+@import "index.css";
+
+/* ------------ */
+/* Commun Rules */
+/* ------------ */
+:root {
+  --red: #ec1d25;
+  --dark-grey: #202020;
+  --black: #0e0e0e;
+}
 .App {
-  text-align: center;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--black);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ---------- */
+/* - header - */
+/* ---------- */
+
+.header {
+  /* height: 450px; */
+  /* width: 1936px; */
+  width: 85vw;
+  margin: auto;
+  margin-bottom: 50px;
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.marvel-logo90 {
+  width: 9%;
+}
+.allcharacters {
+  max-height: 450px;
+  width: 80%;
+}
+.x-logo {
+  width: 7.8%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.charac-btn,
+.comics-btn,
+.fav-btn {
+  outline: none;
+  border: none;
+  border-radius: 30px 0 0 30px;
+  background: white;
+  color: grey;
+  font-weight: 600;
+  font-size: 24px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  font-family: "Ubuntu", sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.charac-btn {
+  width: 130px;
+  height: 30px;
+}
+.comics-btn {
+  width: 110px;
+  height: 30px;
+}
+
+.charac-btn:hover,
+.comics-btn:hover,
+.fav-btn:hover {
+  color: var(--black);
+  transition-duration: 0.3s;
+}
+
+.charac-btn {
+  top: 8%;
+  right: 10.9%;
+}
+.comics-btn {
+  top: 40%;
+  right: 10.9%;
+}
+.fav-btn {
+  top: 77%;
+  right: 10.9%;
+}
+
+/* -------------- */
+/* - characters - */
+/* -------------- */
+.search-form {
+  margin: auto;
+
+  width: 500px;
+  display: flex;
+
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  box-sizing: border-box;
+
+  margin-bottom: 40px;
+}
+.search {
+  width: 350px;
+  height: 35px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding-left: 20px;
+  border-radius: 30px 0 0 30px;
+  box-sizing: border-box;
+}
+.search-btn {
+  width: 100px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 0 30px 30px 0;
+  box-sizing: border-box;
+  background-color: var(--red);
+  color: rgb(201, 198, 198);
+  font-weight: 500;
+  font-size: 16px;
+}
+.search-btn:hover {
+  box-shadow: 1px 1px 20px white;
+  transition: transform 0.2s, box-shadow 0.2s;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.card-wrap {
+  width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* -------------- */
+/* - Herocard - */
+/* -------------- */
+
+.hero-card {
+  margin: 20px;
+  height: 350px;
+  min-width: 300px;
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 30px #00212d;
+  filter: brightness(1) saturate(90%);
+  transition: transform 0.6s, box-shadow 0.6s, filter 0.4s;
+}
+
+.hero-card:hover {
+  box-shadow: 1px 1px 40px white;
+  transform: scale(1.02);
+  filter: brightness(1.2) saturate(110%);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero-card p {
+  height: 45px;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 8px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  line-height: 17px;
+  text-overflow: ellipsis;
+  position: relative;
+  top: 200px;
+}
+
+.Card__gradient-overlay {
+  height: 100%;
+  background: linear-gradient(
+    rgba(180, 180, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.8) 55%,
+    rgb(236, 236, 231) 60%
+  );
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Card-Bot {
+  min-height: 45%;
+  padding: 0 15px 15px;
+}
+.Card-Bot h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 8px;
+  position: relative;
+  padding: 3px;
+  top: 200px;
+  background-color: #20202083;
+  color: white;
+}
+.Card-Bot h1:hover {
+  color: var(--red);
+}
+.plus-icon-card {
+  position: relative;
+  top: -50px;
+  left: 0;
+}
+
+/* ---------- */
+/* pagination */
+/* ---------- */
+
+.pagination {
+  color: white;
+  width: 900px;
+  margin: auto;
+  font-size: 22px;
+  padding: 50px 0;
+}
+
+.pagination-ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.super {
+  border: yellowgreen 2px solid;
+  background: whitesmoke;
+  color: black;
+  width: 800px;
+  height: 800px;
+}
+
+.super h1 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ----------- */
+/* -- comic -- */
+/* ----------- */
+
+.comics-wrap {
+  width: 900px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  margin-bottom: 15px;
+}
+.container h1 {
+  font-size: 16px;
+}
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.692);
+  overflow: hidden;
+  width: 0;
+  height: 100%;
+  transition: 0.6s ease;
+}
+
+.container:hover .overlay {
+  width: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  white-space: wrap;
+  overflow: hidden;
+}
+
+/* --------------- */
+/* characterHeader */
+/* --------------- */
+
+.characterHeader {
+  color: white;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  font-family: "Ubuntu", sans-serif;
+  margin: auto;
+  margin-bottom: 80px;
+}
+.characterHeader img {
+  border-radius: 80% 50%;
+  margin-right: 20px;
+  height: 250px;
+}
+.characterHeader h1 {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.characterHeader p {
+  font-weight: 400;
+}
+
+/* ------------------------ */
+
+.character-comics-wrap {
+  width: 940px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.character-comics-card {
+  background-color: rgba(245, 245, 245, 0.034);
+  width: 460px;
+  height: 260;
+  margin-bottom: 15px;
+  color: white;
+  display: flex;
+  border-radius: 0 8px 8px 0;
+}
+
+.character-comics-text {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 17px;
+}
+.character-comics-title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Favorites */
+
+.favorites {
+  background-color: black;
+  color: white;
+  width: 900px;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.favorites h1 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 35px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* loading */
+
+.loading {
+  margin: auto;
+  height: 100vh;
 }
