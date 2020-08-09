@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ComicCard = ({ id, title, description, thumbnail, comics }) => {
-  const history = useHistory();
+  // const history = useHistory();
   const marvelPic = `${thumbnail.path}/portrait_incredible.${thumbnail.extension}`;
 
   return (

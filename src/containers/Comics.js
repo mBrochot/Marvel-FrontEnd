@@ -84,6 +84,7 @@ const Comics = () => {
         pageNumber={pageNumber}
         limit={limit}
         paginate={paginate}
+        setLimit={setLimit}
       />
     </>
   );

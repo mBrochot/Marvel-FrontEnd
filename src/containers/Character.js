@@ -78,6 +78,7 @@ const Character = () => {
         pageNumber={pageNumber}
         limit={limit}
         paginate={paginate}
+        setLimit={setLimit}
       />
     </>
   );
