@@ -7,23 +7,28 @@ import loading from "../images/loading.svg";
 
 const Favorites = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [heroIdsArray, setHeroIdsArray] = useState([]);
-  const [comicIdsArray, setComicIdsArray] = useState([]);
+  const [heroIdsArray, setHeroIdsArray] = useState("");
+  const [comicIdsArray, setComicIdsArray] = useState("");
 
   // console.log(heroIdsArray);
   // console.log(comicIdsArray);
 
   useEffect(() => {
     const heroIds = Cookies.get("heroIds");
-
+    let heroArray;
     if (heroIds) {
-      setHeroIdsArray(heroIds.split("-"));
+      heroArray = heroIds.split("-");
     }
+    setHeroIdsArray(heroArray);
+
     const comicIds = Cookies.get("comicIds");
+    let comicArray;
 
     if (comicIds) {
-      setComicIdsArray(comicIds.split("-"));
+      comicArray = comicIds.split("-");
     }
+    setComicIdsArray(comicArray);
+
     setIsLoading(false);
   }, []);
 
@@ -39,14 +44,14 @@ const Favorites = () => {
         <div className="card-wrap">
           {heroIdsArray &&
             heroIdsArray.map((characterId, index) => {
-              return <HeroFav id={characterId} index={index} />;
+              return <HeroFav id={characterId} index={index} key={index} />;
             })}
         </div>
         <h3>Comics</h3>
         <div className="card-wrap">
           {comicIdsArray &&
             comicIdsArray.map((comicId, index) => {
-              return <ComicFav id={comicId} index={index} />;
+              return <ComicFav id={comicId} index={index} key={index} />;
             })}
         </div>
       </div>
