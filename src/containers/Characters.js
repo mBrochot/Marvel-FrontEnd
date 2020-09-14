@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 
+import Cookies from "js-cookie";
+
 import Pagination from "../components/Pagination";
 import HeroCard from "../components/HeroCard";
 import loading from "../images/loading.svg";
 
 const Characters = () => {
-  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
   const { pageNumber } = useParams();
   const pageNumbers = [];
 
@@ -47,6 +49,12 @@ const Characters = () => {
     setIsLoading(false);
   };
 
+  const favIds = Cookies.get("favIds");
+  var favIdsArray;
+  if (favIds) {
+    favIdsArray = favIds.split("-");
+  }
+
   return (
     <>
       <div>
@@ -66,17 +74,26 @@ const Characters = () => {
         </form>
       </div>
       <div className="card-wrap">
-        <>
-          {isLoading ? (
-            <div className="loading">
-              <img src={loading} alt="loading" />
-            </div>
-          ) : (
-            data.results.map((character, index) => {
-              return <HeroCard {...character} key={character.id} />;
-            })
-          )}
-        </>
+        {isLoading ? (
+          <div className="loading">
+            <img src={loading} alt="loading" />
+          </div>
+        ) : (
+          data.results.map((character, index) => {
+            return (
+              <HeroCard
+                {...character}
+                key={character.id}
+                fav={
+                  favIdsArray &&
+                  favIdsArray.indexOf(character.id.toString()) !== -1
+                    ? true
+                    : false
+                }
+              />
+            );
+          })
+        )}
       </div>
 
       <Pagination

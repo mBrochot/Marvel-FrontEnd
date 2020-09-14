@@ -3,17 +3,48 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 
-const HeroCard = ({ id, name, description, thumbnail, comics }) => {
+const handleClick = (id) => {
+  let favIds = Cookies.get("favIds");
+  if (!favIds) {
+    const favId = `-${id}`;
+    Cookies.set("favIds", favId, {
+      expires: 7,
+    });
+  } else {
+    const favIdsArray = favIds.split("-");
+    const idOfHero = favIdsArray.indexOf(id.toString());
+    if (idOfHero === -1) {
+      Cookies.set("favIds", `${favIds}-${id}`);
+    }
+    if (idOfHero !== -1) {
+      favIdsArray.splice(idOfHero, 1);
+      const marvelFavoriteCharacters = favIdsArray.join("-");
+      Cookies.set("favIds", marvelFavoriteCharacters, {
+        expires: 7,
+      });
+    }
+  }
+};
+
+const HeroCard = ({ id, name, description, thumbnail, fav }) => {
+  const [favorite, setFavorite] = useState(fav);
   const history = useHistory();
   const marvelPic = `${thumbnail.path}/standard_fantastic.${thumbnail.extension}`;
-
-  const [fav, setFav] = useState(false);
 
   return (
     <>
       {thumbnail.path !==
         "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
         <div className="hero-card">
+          <FontAwesomeIcon
+            className={favorite ? "plus-icon-card-r" : "plus-icon-card-w"}
+            icon="plus"
+            size="3x"
+            onClick={() => {
+              handleClick(id);
+              setFavorite(!favorite);
+            }}
+          />
           <div
             className="Picture"
             style={{
@@ -45,20 +76,6 @@ const HeroCard = ({ id, name, description, thumbnail, comics }) => {
               </div>
             </div>
           </div>
-          <FontAwesomeIcon
-            classname="plus-icon-card"
-            icon="plus"
-            size="3x"
-            color="white"
-            onClick={() => {
-              setFav(!fav);
-              if (Cookies.get(`${id}`)) {
-                Cookies.remove(`${id}`);
-              } else {
-                Cookies.set(`${id}`, `${marvelPic}`, { expires: 7 });
-              }
-            }}
-          />
         </div>
       )}
     </>
