@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import Pagination from "../components/Pagination";
 import ComicCard from "../components/ComicCard";
 import loading from "../images/loading.svg";
 
 const Comics = () => {
-  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
   const { pageNumber } = useParams();
   const pageNumbers = [];
 
@@ -48,6 +49,12 @@ const Comics = () => {
     setIsLoading(false);
   };
 
+  const comicIds = Cookies.get("comicIds");
+  var comicIdsArray;
+  if (comicIds) {
+    comicIdsArray = comicIds.split("-");
+  }
+
   return (
     <>
       <div>
@@ -55,7 +62,7 @@ const Comics = () => {
           <input
             className="search"
             type="text"
-            placeholder="what comics are you looking for ?"
+            placeholder="which comics are you looking for ?"
             value={research}
             onChange={(event) => {
               setResearch(event.target.value);
@@ -74,7 +81,18 @@ const Comics = () => {
             </div>
           ) : (
             data.results.map((comic, index) => {
-              return <ComicCard {...comic} key={comic.id} />;
+              return (
+                <ComicCard
+                  {...comic}
+                  key={index}
+                  fav={
+                    comicIdsArray &&
+                    comicIdsArray.indexOf(comic.id.toString()) !== -1
+                      ? true
+                      : false
+                  }
+                />
+              );
             })
           )}
         </>

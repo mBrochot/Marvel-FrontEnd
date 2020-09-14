@@ -3,33 +3,35 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 
-const handleClick = (id) => {
-  let favIds = Cookies.get("favIds");
-  if (!favIds) {
-    const favId = `-${id}`;
-    Cookies.set("favIds", favId, {
-      expires: 7,
-    });
-  } else {
-    const favIdsArray = favIds.split("-");
-    const idOfHero = favIdsArray.indexOf(id.toString());
-    if (idOfHero === -1) {
-      Cookies.set("favIds", `${favIds}-${id}`);
-    }
-    if (idOfHero !== -1) {
-      favIdsArray.splice(idOfHero, 1);
-      const marvelFavoriteCharacters = favIdsArray.join("-");
-      Cookies.set("favIds", marvelFavoriteCharacters, {
-        expires: 7,
-      });
-    }
-  }
-};
-
 const HeroCard = ({ id, name, description, thumbnail, fav }) => {
   const [favorite, setFavorite] = useState(fav);
   const history = useHistory();
   const marvelPic = `${thumbnail.path}/standard_fantastic.${thumbnail.extension}`;
+
+  const handleClick = (id) => {
+    let heroIds = Cookies.get("heroIds");
+    if (!heroIds) {
+      const heroId = `-${id}`;
+      Cookies.set("heroIds", heroId, {
+        expires: 7,
+      });
+    } else {
+      const heroIdsArray = heroIds.split("-");
+      const idOfHero = heroIdsArray.indexOf(id.toString());
+      if (idOfHero === -1) {
+        Cookies.set("heroIds", `${heroIds}-${id}`, {
+          expires: 7,
+        });
+      }
+      if (idOfHero !== -1) {
+        heroIdsArray.splice(idOfHero, 1);
+        const stringOfHeroId = heroIdsArray.join("-");
+        Cookies.set("heroIds", stringOfHeroId, {
+          expires: 7,
+        });
+      }
+    }
+  };
 
   return (
     <>

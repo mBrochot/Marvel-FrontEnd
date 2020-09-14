@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-
 import Cookies from "js-cookie";
 
 import Pagination from "../components/Pagination";
@@ -49,10 +48,10 @@ const Characters = () => {
     setIsLoading(false);
   };
 
-  const favIds = Cookies.get("favIds");
-  var favIdsArray;
-  if (favIds) {
-    favIdsArray = favIds.split("-");
+  const heroIds = Cookies.get("heroIds");
+  var heroIdsArray;
+  if (heroIds) {
+    heroIdsArray = heroIds.split("-");
   }
 
   return (
@@ -62,7 +61,7 @@ const Characters = () => {
           <input
             className="search"
             type="text"
-            placeholder="what character are you looking for ?"
+            placeholder="which character are you looking for ?"
             value={research}
             onChange={(event) => {
               setResearch(event.target.value);
@@ -83,10 +82,10 @@ const Characters = () => {
             return (
               <HeroCard
                 {...character}
-                key={character.id}
+                key={index}
                 fav={
-                  favIdsArray &&
-                  favIdsArray.indexOf(character.id.toString()) !== -1
+                  heroIdsArray &&
+                  heroIdsArray.indexOf(character.id.toString()) !== -1
                     ? true
                     : false
                 }
