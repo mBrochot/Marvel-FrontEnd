@@ -10,9 +10,6 @@ const Favorites = () => {
   const [heroIdsArray, setHeroIdsArray] = useState("");
   const [comicIdsArray, setComicIdsArray] = useState("");
 
-  // console.log(heroIdsArray);
-  // console.log(comicIdsArray);
-
   useEffect(() => {
     const heroIds = Cookies.get("heroIds");
     let heroArray;
@@ -44,6 +41,7 @@ const Favorites = () => {
         <div className="card-wrap">
           {heroIdsArray &&
             heroIdsArray.map((characterId, index) => {
+              console.log(characterId);
               return <HeroFav id={characterId} index={index} key={index} />;
             })}
         </div>
@@ -51,6 +49,7 @@ const Favorites = () => {
         <div className="card-wrap">
           {comicIdsArray &&
             comicIdsArray.map((comicId, index) => {
+              console.log(comicId);
               return <ComicFav id={comicId} index={index} key={index} />;
             })}
         </div>

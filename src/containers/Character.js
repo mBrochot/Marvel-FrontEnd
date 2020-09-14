@@ -40,7 +40,6 @@ const Character = () => {
         `https://marvel-back-end.herokuapp.com/character/comics?id=${id}&offset=${skipping}`
       );
       setData(response.data.data);
-      console.log(response.data.data);
       setIsLoading(false);
     };
     fetchData();

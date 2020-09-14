@@ -9,15 +9,17 @@ const HeroFav = ({ id, index }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://marvel-back-end.herokuapp.com/character?id=${id}`
-        );
-        setData(response.data.data.results[0]);
-        setIsLoading(false);
-      } catch (error) {
-        alert("An error occurred");
-      }
+      // try {
+
+      const response = await axios.get(
+        `https://marvel-back-end.herokuapp.com/character?id=${id}`
+      );
+      setData(response.data.data.results[0]);
+      setIsLoading(false);
+
+      // } catch (error) {
+      //   alert("An error occurred");
+      // }
     };
     fetchData();
   }, [id]);
