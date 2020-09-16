@@ -8,24 +8,69 @@ const Pagination = ({ limit, totalPosts, paginate, pageNumber }) => {
   }
 
   return (
-    <nav className="pagination">
-      <ul className="pagination-ul">
-        {pageNumber > 1 ? (
-          <li onClick={() => paginate(pageNumber - 1)}>-</li>
-        ) : null}
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={pageNumber === number ? "red" : "light-blue"}
-          >
-            <span onClick={() => paginate(number)}>{number}</span>
+    <>
+      {/* pagnination */}
+      <nav className="pagination">
+        <ul>
+          <li className="nav-btn" onClick={() => paginate(1)}>
+            First
           </li>
-        ))}
-        {pageNumber < pageNumbers.length ? (
-          <li onClick={() => paginate(pageNumber + 1)}>+</li>
-        ) : null}
-      </ul>
-    </nav>
+          {pageNumber > 1 ? (
+            <li className="nav-btn" onClick={() => paginate(pageNumber - 1)}>
+              Prev.
+            </li>
+          ) : (
+            <li className="nav-btn">Prev.</li>
+          )}
+          {pageNumbers.map((number, index) => {
+            return number - 6 <= pageNumber && number + 6 >= pageNumber ? (
+              <li
+                key={index}
+                className={
+                  Number(number) === Number(pageNumber)
+                    ? "page-btn-red"
+                    : "page-btn"
+                }
+              >
+                <span onClick={() => paginate(number)}>{number}</span>
+              </li>
+            ) : null;
+          })}
+          {pageNumber < pageNumbers.length ? (
+            <li className="nav-btn" onClick={() => paginate(pageNumber + 1)}>
+              Next
+            </li>
+          ) : (
+            <li className="nav-btn">Next</li>
+          )}
+          <li className="nav-btn" onClick={() => paginate(pageNumbers.length)}>
+            Last
+          </li>
+        </ul>
+      </nav>
+      {/* pagnination under 930px*/}
+      <nav className="pagination-930">
+        <ul>
+          <li className="nav-btn" onClick={() => paginate(1)}>
+            First
+          </li>
+          {pageNumbers.map((number, index) => {
+            return number - 1 <= pageNumber && number + 1 >= pageNumber ? (
+              <li
+                key={index}
+                className="page-btn"
+                style={{ color: number === pageNumber ? "red" : "blue" }}
+              >
+                <span onClick={() => paginate(number)}>{number}</span>
+              </li>
+            ) : null;
+          })}
+          <li className="nav-btn" onClick={() => paginate(pageNumbers.length)}>
+            Last
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 };
 

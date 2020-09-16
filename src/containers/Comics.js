@@ -69,7 +69,7 @@ const Comics = () => {
             }}
           />
           <button className="search-btn" type="submit">
-            search
+            SEARCH
           </button>
         </form>
       </div>
@@ -97,6 +97,7 @@ const Comics = () => {
           )}
         </>
       </div>
+
       <Pagination
         totalPosts={data.total}
         pageNumber={pageNumber}

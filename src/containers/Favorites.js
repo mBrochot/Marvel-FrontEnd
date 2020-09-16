@@ -17,15 +17,12 @@ const Favorites = () => {
       heroArray = heroIds.split("-");
     }
     setHeroIdsArray(heroArray);
-
     const comicIds = Cookies.get("comicIds");
     let comicArray;
-
     if (comicIds) {
       comicArray = comicIds.split("-");
     }
     setComicIdsArray(comicArray);
-
     setIsLoading(false);
   }, []);
 
@@ -41,16 +38,16 @@ const Favorites = () => {
         <div className="card-wrap">
           {heroIdsArray &&
             heroIdsArray.map((characterId, index) => {
-              console.log(characterId);
-              return <HeroFav id={characterId} index={index} key={index} />;
+              return (
+                <HeroFav id={characterId} index={index} key={characterId} />
+              );
             })}
         </div>
         <h3>Comics</h3>
         <div className="card-wrap">
           {comicIdsArray &&
             comicIdsArray.map((comicId, index) => {
-              console.log(comicId);
-              return <ComicFav id={comicId} index={index} key={index} />;
+              return <ComicFav id={comicId} index={index} key={comicId} />;
             })}
         </div>
       </div>

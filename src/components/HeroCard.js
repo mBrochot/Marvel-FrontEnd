@@ -37,7 +37,37 @@ const HeroCard = ({ id, name, description, thumbnail, fav }) => {
     <>
       {thumbnail.path !==
         "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
-        <div className="hero-card">
+        <div className="hero">
+          <div
+            className="hero-card"
+            onClick={() => {
+              history.push("/character_:pageNumber", {
+                id: id,
+                name: name,
+                description: description,
+                thumbnail: thumbnail,
+              });
+            }}
+          >
+            <div
+              className="Picture"
+              style={{
+                height: "100%",
+                backgroundImage: `url(${marvelPic} )`,
+                backgroundSize: "contain",
+                backgroundPosition: "top",
+                borderRadius: "inherit",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <div className="Card__gradient-overlay">
+                <div className="Card-Bot">
+                  <h1>{name}</h1>
+                  <p>{description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <FontAwesomeIcon
             className={favorite ? "plus-icon-card-r" : "plus-icon-card-w"}
             icon="plus"
@@ -47,37 +77,6 @@ const HeroCard = ({ id, name, description, thumbnail, fav }) => {
               setFavorite(!favorite);
             }}
           />
-          <div
-            className="Picture"
-            style={{
-              height: "100%",
-              backgroundImage: `url(${marvelPic} )`,
-              backgroundSize: "contain",
-              backgroundPosition: "top",
-              borderRadius: "inherit",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <div className="Card-Top"></div>
-
-            <div className="Card__gradient-overlay">
-              <div className="Card-Bot">
-                <h1
-                  onClick={() => {
-                    history.push("/character_:pageNumber", {
-                      id: id,
-                      name: name,
-                      description: description,
-                      thumbnail: thumbnail,
-                    });
-                  }}
-                >
-                  {name}
-                </h1>
-                <p>{description}</p>
-              </div>
-            </div>
-          </div>
         </div>
       )}
     </>

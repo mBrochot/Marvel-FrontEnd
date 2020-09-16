@@ -5,33 +5,38 @@ import loading from "../images/loading.svg";
 
 const ComicFav = ({ id, index }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
+  const [pic, setPic] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       // try {
       const response = await axios.get(
-        `https://marvel-back-end.herokuapp.com/comics?id=${id}`
+        `https://marvel-back-end.herokuapp.com/comic?id=${id}`
       );
+
       setData(response.data.data.results[0]);
-      setIsLoading(false);
+      setPic(
+        response.data.data.results[0].thumbnail.path +
+          "/portrait_incredible." +
+          response.data.data.results[0].thumbnail.extension
+      );
       // } catch (error) {
       //   alert("An error occurred");
       // }
     };
+    setIsLoading(false);
     fetchData();
   }, [id]);
-
   return isLoading ? (
     <div className="loading">
       <img src={loading} alt="loading" />
     </div>
   ) : (
     <div key={index}>
-      {/* <img src={data.thumbnail.path + `.${data.thumbnail.extension}`} alt="" /> */}
+      <img src={pic} alt="" />
       <div>
         <h3>{data.title}</h3>
-        <p>{data.description}</p>
       </div>
     </div>
   );

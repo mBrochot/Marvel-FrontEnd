@@ -31,7 +31,7 @@ const Header = () => {
       <button
         className="comics-btn"
         onClick={() => {
-          history.push("/comics_:pageNumber");
+          history.push("/comics_1");
         }}
       >
         COMICS
