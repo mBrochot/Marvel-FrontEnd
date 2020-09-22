@@ -10,7 +10,6 @@ const HeroFav = ({ id, index }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // try {
       const response = await axios.get(
         `https://marvel-back-end.herokuapp.com/character?id=${id}`
       );
@@ -20,9 +19,6 @@ const HeroFav = ({ id, index }) => {
           "/standard_fantastic." +
           response.data.data.results[0].thumbnail.extension
       );
-      // } catch (error) {
-      //   alert("An error occurred");
-      // }
     };
     setIsLoading(false);
     fetchData();
@@ -33,7 +29,7 @@ const HeroFav = ({ id, index }) => {
       <img src={loading} alt="loading" />
     </div>
   ) : (
-    <div key={index}>
+    <div className="hero-fav" key={index}>
       <img src={pic} alt="" />
       <div>
         <h3>{data.name}</h3>

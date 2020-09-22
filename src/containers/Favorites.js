@@ -26,32 +26,33 @@ const Favorites = () => {
     setIsLoading(false);
   }, []);
 
-  return isLoading ? (
-    <div className="loading">
-      <img src={loading} alt="loading" />
+  return (
+    <div className="favorites">
+      {isLoading ? (
+        <div className="loading">
+          <img src={loading} alt="loading" />
+        </div>
+      ) : (
+        <>
+          <h2>Favorites Characters</h2>
+          <div className="card-wrap">
+            {heroIdsArray &&
+              heroIdsArray.map((characterId, index) => {
+                return (
+                  <HeroFav id={characterId} index={index} key={characterId} />
+                );
+              })}
+          </div>
+          <h2>Favorites Comics</h2>
+          <div className="card-wrap">
+            {comicIdsArray &&
+              comicIdsArray.map((comicId, index) => {
+                return <ComicFav id={comicId} index={index} key={comicId} />;
+              })}
+          </div>
+        </>
+      )}
     </div>
-  ) : (
-    <>
-      <div className="favorites">
-        <h2>Favorites</h2>
-        <h3>Characters</h3>
-        <div className="card-wrap">
-          {heroIdsArray &&
-            heroIdsArray.map((characterId, index) => {
-              return (
-                <HeroFav id={characterId} index={index} key={characterId} />
-              );
-            })}
-        </div>
-        <h3>Comics</h3>
-        <div className="card-wrap">
-          {comicIdsArray &&
-            comicIdsArray.map((comicId, index) => {
-              return <ComicFav id={comicId} index={index} key={comicId} />;
-            })}
-        </div>
-      </div>
-    </>
   );
 };
 

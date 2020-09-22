@@ -58,8 +58,11 @@ const Pagination = ({ limit, totalPosts, paginate, pageNumber }) => {
             return number - 1 <= pageNumber && number + 1 >= pageNumber ? (
               <li
                 key={index}
-                className="page-btn"
-                style={{ color: number === pageNumber ? "red" : "blue" }}
+                className={
+                  Number(number) === Number(pageNumber)
+                    ? "page-btn-red"
+                    : "page-btn"
+                }
               >
                 <span onClick={() => paginate(number)}>{number}</span>
               </li>

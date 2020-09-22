@@ -10,7 +10,6 @@ const ComicFav = ({ id, index }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // try {
       const response = await axios.get(
         `https://marvel-back-end.herokuapp.com/comic?id=${id}`
       );
@@ -21,9 +20,6 @@ const ComicFav = ({ id, index }) => {
           "/portrait_incredible." +
           response.data.data.results[0].thumbnail.extension
       );
-      // } catch (error) {
-      //   alert("An error occurred");
-      // }
     };
     setIsLoading(false);
     fetchData();
@@ -33,7 +29,7 @@ const ComicFav = ({ id, index }) => {
       <img src={loading} alt="loading" />
     </div>
   ) : (
-    <div key={index}>
+    <div className="comic-fav" key={index}>
       <img src={pic} alt="" />
       <div>
         <h3>{data.title}</h3>

@@ -28,6 +28,7 @@ const Characters = () => {
   for (let i = 1; i <= Math.ceil(data.total / limit); i++) {
     pageNumbers.push(i);
   }
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -39,6 +40,12 @@ const Characters = () => {
     fetchData();
   }, [skipping]);
 
+  const heroIds = Cookies.get("heroIds");
+  var heroIdsArray;
+  if (heroIds) {
+    heroIdsArray = heroIds.split("-");
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.get(
@@ -47,12 +54,6 @@ const Characters = () => {
     setData(response.data.data);
     setIsLoading(false);
   };
-
-  const heroIds = Cookies.get("heroIds");
-  var heroIdsArray;
-  if (heroIds) {
-    heroIdsArray = heroIds.split("-");
-  }
 
   return (
     <>
@@ -89,6 +90,7 @@ const Characters = () => {
                     ? true
                     : false
                 }
+                pageNumber={pageNumber}
               />
             );
           })

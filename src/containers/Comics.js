@@ -73,29 +73,27 @@ const Comics = () => {
           </button>
         </form>
       </div>
-      <div className="comics-wrap">
-        <>
-          {isLoading ? (
-            <div className="loading">
-              <img src={loading} alt="loading" />
-            </div>
-          ) : (
-            data.results.map((comic, index) => {
-              return (
-                <ComicCard
-                  {...comic}
-                  key={index}
-                  fav={
-                    comicIdsArray &&
-                    comicIdsArray.indexOf(comic.id.toString()) !== -1
-                      ? true
-                      : false
-                  }
-                />
-              );
-            })
-          )}
-        </>
+      <div className="card-wrap">
+        {isLoading ? (
+          <div className="loading">
+            <img src={loading} alt="loading" />
+          </div>
+        ) : (
+          data.results.map((comic, index) => {
+            return (
+              <ComicCard
+                {...comic}
+                key={index}
+                fav={
+                  comicIdsArray &&
+                  comicIdsArray.indexOf(comic.id.toString()) !== -1
+                    ? true
+                    : false
+                }
+              />
+            );
+          })
+        )}
       </div>
 
       <Pagination

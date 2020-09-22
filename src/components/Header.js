@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import logo90 from "../images/marvel_logo90.png";
+import logo from "../images/marvel-logo.png";
 import xv3 from "../images/x-v3.png";
 import allcharacters from "../images/allcharacters.jpg";
 
@@ -14,6 +15,14 @@ const Header = () => {
         className="marvel-logo90"
         src={logo90}
         alt="marvel-logo90"
+        onClick={() => {
+          history.push("/");
+        }}
+      />
+      <img
+        className="marvel-logo"
+        src={logo}
+        alt="marvel-logo"
         onClick={() => {
           history.push("/");
         }}

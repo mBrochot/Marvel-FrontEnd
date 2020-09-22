@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 
-const HeroCard = ({ id, name, description, thumbnail, fav }) => {
+const HeroCard = ({ id, name, description, thumbnail, fav, pageNumber }) => {
   const [favorite, setFavorite] = useState(fav);
   const history = useHistory();
   const marvelPic = `${thumbnail.path}/standard_fantastic.${thumbnail.extension}`;
@@ -11,7 +11,7 @@ const HeroCard = ({ id, name, description, thumbnail, fav }) => {
   const handleClick = (id) => {
     let heroIds = Cookies.get("heroIds");
     if (!heroIds) {
-      const heroId = `-${id}`;
+      const heroId = `${id}`;
       Cookies.set("heroIds", heroId, {
         expires: 7,
       });
@@ -38,17 +38,18 @@ const HeroCard = ({ id, name, description, thumbnail, fav }) => {
       {thumbnail.path !==
         "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
         <div className="hero">
-          <div
-            className="hero-card"
-            onClick={() => {
-              history.push("/character_:pageNumber", {
-                id: id,
-                name: name,
-                description: description,
-                thumbnail: thumbnail,
-              });
-            }}
-          >
+          <div className="hero-card">
+            <div className="circle-hero">
+              <FontAwesomeIcon
+                className={favorite ? "plus-icon-card-r" : "plus-icon-card-w"}
+                icon="plus"
+                size="3x"
+                onClick={() => {
+                  handleClick(id);
+                  setFavorite(!favorite);
+                }}
+              />
+            </div>
             <div
               className="Picture"
               style={{
@@ -62,21 +63,24 @@ const HeroCard = ({ id, name, description, thumbnail, fav }) => {
             >
               <div className="Card__gradient-overlay">
                 <div className="Card-Bot">
-                  <h1>{name}</h1>
+                  <h1
+                    onClick={() => {
+                      history.push("/character_1", {
+                        id: id,
+                        name: name,
+                        description: description,
+                        thumbnail: thumbnail,
+                        pageToReturn: pageNumber,
+                      });
+                    }}
+                  >
+                    {name}
+                  </h1>
                   <p>{description}</p>
                 </div>
               </div>
             </div>
           </div>
-          <FontAwesomeIcon
-            className={favorite ? "plus-icon-card-r" : "plus-icon-card-w"}
-            icon="plus"
-            size="3x"
-            onClick={() => {
-              handleClick(id);
-              setFavorite(!favorite);
-            }}
-          />
         </div>
       )}
     </>

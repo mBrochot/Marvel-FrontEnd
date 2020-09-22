@@ -14,9 +14,48 @@
 .App {
   font-family: "Roboto", sans-serif;
   background-color: var(--background);
-  height: 100vh;
-  /* display: flex;
-  flex-direction: column; */
+}
+
+.circle-hero,
+.circle-card {
+  position: absolute;
+  top: 5px;
+  background: rgba(255, 255, 255, 0.6);
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-hero {
+  left: 145px;
+}
+
+.circle-card {
+  left: 165px;
+}
+
+.plus-icon-card-w,
+.plus-icon-card-r {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.plus-icon-card-w:hover,
+.plus-icon-card-r:hover {
+  transform: scale(1.02);
+}
+
+.plus-icon-card-w {
+  color: var(--dark-grey);
+  opacity: 0.6;
+}
+
+.plus-icon-card-r {
+  color: var(--red);
 }
 
 /* ---------- */
@@ -32,8 +71,12 @@
 
 .marvel-logo90 {
   width: 9%;
+  cursor: pointer;
 }
 
+.marvel-logo {
+  display: none;
+}
 .allcharacters {
   max-height: 450px;
   width: 80%;
@@ -84,14 +127,15 @@
 .charac-btn:hover,
 .comics-btn:hover,
 .fav-btn:hover {
-  color: var(--red);
   transition-duration: 0.3s;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 /* -------------- */
 /* --- search --- */
 /* -------------- */
+
 .search-form,
 .search,
 .search-btn {
@@ -131,8 +175,9 @@
 .search-btn:hover {
   box-shadow: 1px 1px 10px var(--dark-grey);
   transition: transform 0.1s, box-shadow 0.4s;
-  color: var(--black);
   font-weight: 700;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 /* -------------- */
@@ -140,7 +185,6 @@
 /* -------------- */
 
 .card-wrap {
-  /* width: 1100px; */
   width: 80vw;
   margin: auto;
   display: flex;
@@ -151,15 +195,13 @@
   justify-content: space-between;
 }
 
-/* .card-wrap::after {
-  content: "";
-  width: 750px;
-} */
-
 /* -------------- */
 /* - Herocard - */
 /* -------------- */
 
+.hero-card {
+  position: relative;
+}
 .hero,
 .hero-card {
   height: 300px;
@@ -216,72 +258,60 @@
   position: relative;
   top: 165px;
   background-color: #20202083;
-  color: white;
+  color: var(--white);
 }
-.plus-icon-card-w,
-.plus-icon-card-r {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  top: -295px;
-  left: 150px;
-  cursor: pointer;
-}
-.plus-icon-card-w:hover,
-.plus-icon-card-r:hover {
-  transform: scale(1.02);
-}
-.plus-icon-card-w {
-  color: var(--dark-grey);
-}
-.plus-icon-card-r {
+
+.Card-Bot h1:hover {
   color: var(--red);
 }
 
-/* ----------- */
-/* -- comic -- */
-/* ----------- */
+/* ----------------- */
+/* -- comics card -- */
+/* ----------------- */
 
-.comics-wrap {
-  width: 900px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.container {
+.comic-card {
   position: relative;
   width: 220px;
-  height: 320px;
-  margin-bottom: 15px;
+  height: 410px;
+  box-sizing: border-box;
 }
-.container h1 {
+
+.comic-card h2 {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  padding: 15px 0;
   font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }
 .image {
-  display: block;
-  width: 100%;
+  width: 220px;
   height: auto;
+  box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px #aeaec0;
 }
 
 .overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.692);
   overflow: hidden;
   width: 0;
-  height: 100%;
-  transition: 0.6s ease;
+  height: 330px;
+  transition: 0.4s ease;
 }
 
-.container:hover .overlay {
+.comic-card:hover .overlay {
   width: 100%;
 }
 
 .text {
+  height: 300px;
+  margin-top: 10px;
   color: white;
   font-size: 12px;
   position: absolute;
@@ -292,13 +322,36 @@
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  white-space: wrap;
-  overflow: hidden;
 }
 
-/* --------------- */
-/* characterHeader */
-/* --------------- */
+.text p {
+  line-height: 16px;
+}
+
+/* ----------------------- */
+/* -- character-section -- */
+/* ----------------------- */
+
+.character-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.character-description {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+.return-btn {
+  margin-top: 100px;
+  margin-right: 100px;
+  cursor: pointer;
+}
+
+/* --------------------- */
+/* -- characterHeader -- */
+/* --------------------- */
 
 .characterHeader {
   color: var(--dark-grey);
@@ -355,35 +408,74 @@
   margin-bottom: 15px;
 }
 
-/* Favorites */
+/* --------------- */
+/* -- Favorites -- */
+/* --------------- */
 
 .favorites {
-  background-color: black;
-  color: white;
-  width: 900px;
-  height: 100vh;
-  margin: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
-.favorites h1 {
+
+.favorites h2 {
   font-family: "Ubuntu", sans-serif;
   font-size: 35px;
   font-weight: 700;
   font-style: italic;
+  margin-bottom: 30px;
 }
 
-/* ---------- */
-/* loading */
-/* ---------- */
+.favorites h3 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.hero-fav,
+.comic-fav {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.hero-fav {
+  height: 270px;
+}
+
+.comic-fav {
+  height: 380px;
+}
+
+.hero-fav img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.hero-fav h3,
+.comic-fav h3 {
+  text-align: center;
+  padding: 5px;
+  line-height: 25px;
+}
+
+.comic-fav img {
+  width: 200px;
+}
+
+/* ------------- */
+/* -- Loading -- */
+/* ------------- */
+
 .loading {
   margin: auto;
   height: 100vh;
 }
 
-/* ---------- */
-/* pagination */
-/* ---------- */
+/* ---------------- */
+/* -- Pagination -- */
+/* ---------------- */
+
 .pagination-930 {
   display: none;
 }
@@ -403,6 +495,7 @@
 .pagination {
   width: 90%;
   margin: 50px auto;
+  margin-bottom: 100px;
   font-size: 22px;
 }
 
@@ -418,36 +511,37 @@
   box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px #aeaec0;
 }
 
-.page-btn {
-  color: var(--dark-grey);
+.page-btn,
+.page-btn-red {
   width: 45px;
   height: 40px;
   box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px #aeaec0;
+}
+.page-btn {
+  color: var(--dark-grey);
 }
 .page-btn-red {
   color: var(--red);
-  width: 45px;
-  height: 40px;
-  box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px #aeaec0;
-}
-/* .super {
-  border: yellowgreen 2px solid;
-  background: whitesmoke;
-  color: black;
-  width: 800px;
-  height: 800px;
 }
 
-.super h1 {
-  font-family: "Ubuntu", sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  font-style: italic;
-} */
+.pagination li:hover {
+  opacity: 0.7;
+}
 
-/* ------------- */
-/* MEDIA QUERIES */
-/* ------------- */
+/* ------------------ */
+/* ----- Footer ----- */
+/* ------------------ */
+
+.footer {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ------------------------------ */
+/* ------- MEDIA QUERIES -------- */
+/* ------------------------------ */
+
 @media (max-width: 930px) {
   .pagination {
     display: none;
@@ -465,20 +559,29 @@
     margin: 50px auto;
     font-size: 22px;
   }
-
   .pagination-930 li {
-    color: var(--dark-grey);
     margin: 0 2px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 414px) {
   .header {
     width: 100vw;
     margin: auto;
     margin-bottom: 10px;
     position: relative;
   }
+  .marvel-logo90,
+  .allcharacters,
+  .x-logo {
+    display: none;
+  }
+  .marvel-logo {
+    cursor: pointer;
+    display: flex;
+    width: 100vw;
+  }
+
   /* ------------------------- */
   .charac-btn,
   .comics-btn,
@@ -503,12 +606,14 @@
   .fav-btn {
     height: 40px;
     width: 95px;
-    top: 20px;
-  }
-  .comics-btn {
-    right: 242px;
+    top: 165px;
+    background: var(--red);
+    color: var(--white);
   }
   .charac-btn {
+    right: 242px;
+  }
+  .comics-btn {
     right: 143px;
   }
   .fav-btn {
@@ -527,6 +632,7 @@
     width: 100vw;
     margin: auto;
     box-sizing: border-box;
+    margin-top: 55px;
     margin-bottom: 10px;
     flex-direction: column;
   }
@@ -536,7 +642,7 @@
     outline: none;
     border: none;
     box-sizing: border-box;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
@@ -551,9 +657,11 @@
     min-width: 10%;
     background-color: var(--red);
     color: var(--white);
-    font-size: 16px;
-    font-weight: 500;
+    font-family: "Ubuntu", sans-serif;
+    font-style: italic;
+    font-weight: 700;
   }
+
   /* ----------------- */
   .card-wrap {
     width: 95vw;

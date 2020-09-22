@@ -2,7 +2,11 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTimes, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faPlus,
+  faArrowAltCircleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,7 +16,7 @@ import Comics from "./containers/Comics";
 import Favorites from "./containers/Favorites";
 import Home from "./containers/Home";
 
-library.add(faTimes, faPlus);
+library.add(faTimes, faPlus, faArrowAltCircleLeft);
 
 function App() {
   return (
