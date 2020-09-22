@@ -1,4 +1,9 @@
-
+<h1 align="center">
+	MARVEL API
+</h1>
+<p align="center">
+	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/preview/capture.gif" width="700">
+</p>
 
 
 ## Running the project
