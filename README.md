@@ -5,20 +5,9 @@
 https://the-marvel-api.netlify.app
 
 <p align="center">
-	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/Cap-marv-1.gif">
+	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/capture-marv.gif">
 </p>
 
-<p align="center">
-	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/Cap-marv-2.gif">
-</p>
-
-<p align="center">
-	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/Cap-marv-3.gif">
-</p>
-
-<p align="center">
-	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/Cap-marv-4.gif">
-</p>
 
 ## Running the project
 
