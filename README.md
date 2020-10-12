@@ -5,7 +5,7 @@
 https://the-marvel-api.netlify.app
 
 <p align="center">
-	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/capture-marv.gif">
+	<img src="https://github.com/mBrochot/Marvel-FrontEnd/blob/master/src/preview/capture-marv.gif">
 </p>
 
 
