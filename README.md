@@ -1,7 +1,3 @@
-<h1 align="center">
-	MARVEL API
-</h1>
-
 <p align="center">
 <a href="https://the-marvel-api.netlify.app/">
   <img width="700"
